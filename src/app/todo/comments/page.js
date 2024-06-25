@@ -1,5 +1,5 @@
 export default function Comments() {
     return (
-        <h1>entrou comments</h1>
+        <h1>Comentários</h1>
     )
 }
