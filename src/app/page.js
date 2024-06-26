@@ -1,6 +1,6 @@
 import styles from "../styles/core/Home.module.css";
 
-export default function Home() {
+export default async function Home() {
 
   const getData = async () => {
 
@@ -9,11 +9,17 @@ export default function Home() {
 
     const resp = await fetch(`${api}/?limit=${maxPokemons}`)
     const data = await resp.json()
+
+    data.results.forEach((item, index) => {
+      item.id = index + 1
+    });
     
     return data
   }
 
-  console.log(getData())
+  const resultado = await getData()
+
+  console.log(resultado)
   
   return (
     <>
