@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "../styles/core/Home.module.css";
 
 const getData = async () => {
@@ -11,24 +12,25 @@ const getData = async () => {
     item.id = index + 1;
   });
 
-  return {
-    props: {
-      pokemons: data.results,
-    },
-  };
+  return data.results;
 };
 
 export default async function Home() {
-  const resultado = await getData();
+  const pokemons = await getData();
 
-  console.log(resultado.props.pokemons);
+  console.log(pokemons);
 
   return (
-    <>
-      <h1>PokeNext</h1>
-      {resultado.props.pokemons.map((pokemon) => (
-        <p>{pokemon.name} - {pokemon.url}</p>
-      ))}
-    </>
+    <div>
+      <div>
+        <h1>PokeNext</h1>
+        <Image src={"/images/pokeball.png"} width={50} height={50} />
+      </div>
+      <ul>
+        {pokemons.map((pokemon) => (
+          <li key={pokemon.id}>{pokemon.name}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
