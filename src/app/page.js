@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../styles/core/Home.module.css";
+import styles from "../styles/pages/Home.module.css";
 
 const getData = async () => {
   const maxPokemons = 251;
@@ -16,21 +16,23 @@ const getData = async () => {
 };
 
 export default async function Home() {
+  
   const pokemons = await getData();
 
   console.log(pokemons);
 
   return (
-    <div>
-      <div>
-        <h1>PokeNext</h1>
-        <Image src={"/images/pokeball.png"} width={50} height={50} />
+    <>
+      <div className={styles.title_container}>
+        <Image src={"/images/pikachu.png"} width={100} height={100} alt="PokeNext Pikachu"/>
+        <h1>Poke<span>Next</span></h1>
+        <Image src={"/images/ash.png"} width={80} height={180} alt="PokeNext Ash" />
       </div>
-      <ul>
+      <div className={styles.pokemon_container}>
         {pokemons.map((pokemon) => (
-          <li key={pokemon.id}>{pokemon.name}</li>
+          <p key={pokemon.id}>{pokemon.name}</p>
         ))}
-      </ul>
-    </div>
+      </div>
+    </>
   );
 }
