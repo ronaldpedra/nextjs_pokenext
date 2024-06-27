@@ -3,7 +3,7 @@ import styles from "../styles/pages/Home.module.css";
 import PokeCard from "@/components/wraped/PokeCard";
 
 const getData = async () => {
-  const maxPokemons = 1025;
+  const maxPokemons = 12;
   const api = "https://pokeapi.co/api/v2/pokemon/";
 
   const resp = await fetch(`${api}/?limit=${maxPokemons}`);
@@ -17,7 +17,6 @@ const getData = async () => {
 };
 
 export default async function Home() {
-  
   const pokemons = await getData();
 
   console.log(pokemons);
@@ -25,9 +24,21 @@ export default async function Home() {
   return (
     <>
       <div className={styles.title_container}>
-        <Image src={"/images/pikachu.png"} width={100} height={100} alt="PokeNext Pikachu"/>
-        <h1>Poke<span>Next</span></h1>
-        <Image src={"/images/ash.png"} width={80} height={180} alt="PokeNext Ash" />
+        <Image
+          src={"/images/pikachu.png"}
+          width={100}
+          height={100}
+          alt="PokeNext Pikachu"
+        />
+        <h1>
+          Poke<span>Next</span>
+        </h1>
+        <Image
+          src={"/images/ash.png"}
+          width={80}
+          height={180}
+          alt="PokeNext Ash"
+        />
       </div>
       <div className={styles.pokemon_container}>
         {pokemons.map((pokemon) => (
