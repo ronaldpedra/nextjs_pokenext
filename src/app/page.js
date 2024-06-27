@@ -1,8 +1,9 @@
 import Image from "next/image";
 import styles from "../styles/pages/Home.module.css";
+import PokeCard from "@/components/wraped/PokeCard";
 
 const getData = async () => {
-  const maxPokemons = 251;
+  const maxPokemons = 1025;
   const api = "https://pokeapi.co/api/v2/pokemon/";
 
   const resp = await fetch(`${api}/?limit=${maxPokemons}`);
@@ -30,7 +31,10 @@ export default async function Home() {
       </div>
       <div className={styles.pokemon_container}>
         {pokemons.map((pokemon) => (
-          <p key={pokemon.id}>{pokemon.name}</p>
+          <PokeCard
+          key={pokemon.id}
+          pokemon={pokemon}
+          />
         ))}
       </div>
     </>
